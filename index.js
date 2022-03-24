@@ -40,7 +40,6 @@ async function run() {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const result = await usersCollection.findOne(query);
-            console.log(result);
             res.send(result)
         });
 
@@ -63,11 +62,10 @@ async function run() {
 
         // PUT API product update 
 
-        app.put('/updateUser', async (req, res) => {
+        app.put('/users', async (req, res) => {
+            const id = req.query.id;
             const data = req.body;
-            console.log("Edit Product: ", req.body);
             const query = { _id: ObjectId(id) };
-            // const options = { upsert: true };
             const updateDoc = {
                 $set: data,
             }
